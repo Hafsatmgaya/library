@@ -11,7 +11,10 @@ function Book(title, author, pages, read) {
         } else console.log(`The book ${title} by ${author} ${pages} pages, not read`);
     };
 }
-const book1 = new Book("Broken" , "Fatima Bala, ", 300, true);
-const book2 = new Book("When time", "mukky", 149, true);
-book1.info();
-book2.info();
+function addBookToLibrary(title, author, pages, read) {
+    myLibrary.push(new Book(title, author, pages, read))
+}
+addBookToLibrary("Broken", "Fatima Bala", 300, true);
+addBookToLibrary("when the moon split", "Darrusalam", 300, true);
+console.log(myLibrary);
+
