@@ -1,0 +1,19 @@
+body{
+    font-family: sans-serif;
+    padding: 2rem;
+}
+#library-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.book-card{
+    border: 1px solid rgb(108, 30, 108);
+    padding: 1rem;
+    background-color:pink;
+    padding: 1rem;
+    border-radius: 8px;
+}
+.my-library{
+    color: rgb(108, 30, 108);
+}
