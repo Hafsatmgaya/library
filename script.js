@@ -30,5 +30,20 @@ function renderLibrary() {
         container.appendChild(card);
     });
 }
-
 renderLibrary();
+const btn = document.getElementById("new-book-btn");
+const dialog = document.getElementById("new-book-dialog");
+btn.addEventListener("click", function() {
+    dialog.showModal();
+});
+const form = document.querySelector("form");
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+const title = document.getElementById("title").value;
+const author = document.getElementById("author").value;
+const pages = document.getElementById("pages").value;
+const read = document.getElementById("read").checked;
+    addBookToLibrary(title, author, pages, read);
+    renderLibrary();
+    dialog.close();
+});
