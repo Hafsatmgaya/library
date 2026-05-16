@@ -11,6 +11,9 @@ function Book(title, author, pages, read) {
         } else console.log(`The book ${title} by ${author} ${pages} pages, not read`);
     };
 }
+Book.prototype.switchRead = function() {
+    this.read = !this.read;
+    }
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read))
 }
@@ -28,9 +31,10 @@ function updateDisplay() {
         card.classList.add("book-card");
         card.innerHTML = ` <p> ${book.title} </p> <p> ${book.author} </p> <p> ${book.pages} </p>
          <p>${book.read ? "Read" : "Not read"}</p>
-         <button class="remove-btn" data-id="${book.id}">Remove</button>`;   
+         <button class="remove-btn" data-id="${book.id}">Remove</button>
+         <button class="read-btn" data-id="${book.id}">Read</button>`; 
         container.appendChild(card);
-    });
+    }); 
 }
 updateDisplay();
 const newBookBtn = document.getElementById("new-book-btn");
@@ -57,5 +61,13 @@ container.addEventListener("click" , function(event){
             return book.id !== id;
         });
         updateDisplay();
+    }
+    if(event.target.classList.contains("read-btn")) {
+        const id = event.target.dataset.id;
+        const readBook = myLibrary.find(function(book){
+            return book.id === id;
+    });
+    readBook.switchRead();
+    updateDisplay();
     }
 });
