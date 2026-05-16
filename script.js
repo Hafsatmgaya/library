@@ -54,7 +54,7 @@ container.addEventListener("click" , function(event){
     if (event.target.classList.contains("remove-btn")) {
         const id = event.target.dataset.id;   
         myLibrary = myLibrary.filter(function(book){
-            return book.i !== id;
+            return book.id !== id;
         });
         updateDisplay();
     }
