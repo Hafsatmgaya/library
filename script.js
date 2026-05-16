@@ -17,10 +17,10 @@ Book.prototype.switchRead = function() {
 function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read))
 }
-addBookToLibrary("Broken", "Fatima Bala", 300, true);
-addBookToLibrary("When the moon split", "Darrusalam", 300, true);
-addBookToLibrary("When the moon split", "Darrusalam", 300, true);
-addBookToLibrary("Time flies", "Edward Harry", 300, true);
+addBookToLibrary("Broken", "Fatima Bala", 417, true);
+addBookToLibrary("When the moon split", "Darrusalam", 335, true);
+addBookToLibrary("Before Forbes", "Sadiya Mukhtar", 190, true);
+addBookToLibrary("The unfair advantage", "Ash Ali and Hasan Kubba", 300, true);
 console.log(myLibrary);
 
 function updateDisplay() {
@@ -41,6 +41,10 @@ const newBookBtn = document.getElementById("new-book-btn");
 const dialog = document.getElementById("new-book-dialog");
 newBookBtn.addEventListener("click", function() {
     dialog.showModal();
+});
+const closeBtn = document.getElementById("close-btn");
+closeBtn.addEventListener("click", function() {
+    dialog.close();
 });
 const form = document.querySelector("form");
 form.addEventListener("submit", function(event) {
