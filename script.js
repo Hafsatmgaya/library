@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 function Book(title, author, pages, read) {
     this.title = title;
     this.id = crypto.randomUUID(); 
@@ -20,20 +20,22 @@ addBookToLibrary("When the moon split", "Darrusalam", 300, true);
 addBookToLibrary("Time flies", "Edward Harry", 300, true);
 console.log(myLibrary);
 
-function renderLibrary() {
+function updateDisplay() {
     const container = document.getElementById("library-container");
     container.innerHTML = "";
     myLibrary.forEach(function(book) {
         const card = document.createElement("div");
         card.classList.add("book-card");
-        card.innerHTML = ` <p> ${book.title} </p> <p> ${book.author} </p> <p> ${book.pages} </p>`;
+        card.innerHTML = ` <p> ${book.title} </p> <p> ${book.author} </p> <p> ${book.pages} </p>
+         <p>${book.read ? "Read" : "Not read"}</p>
+         <button class="remove-btn" data-id="${book.id}">Remove</button>`;   
         container.appendChild(card);
     });
 }
-renderLibrary();
-const btn = document.getElementById("new-book-btn");
+updateDisplay();
+const newBookBtn = document.getElementById("new-book-btn");
 const dialog = document.getElementById("new-book-dialog");
-btn.addEventListener("click", function() {
+newBookBtn.addEventListener("click", function() {
     dialog.showModal();
 });
 const form = document.querySelector("form");
@@ -44,6 +46,16 @@ const author = document.getElementById("author").value;
 const pages = document.getElementById("pages").value;
 const read = document.getElementById("read").checked;
     addBookToLibrary(title, author, pages, read);
-    renderLibrary();
+    updateDisplay();
     dialog.close();
+});
+const container = document.getElementById("library-container");
+container.addEventListener("click" , function(event){
+    if (event.target.classList.contains("remove-btn")) {
+        const id = event.target.dataset.id;   
+        myLibrary = myLibrary.filter(function(book){
+            return book.i !== id;
+        });
+        updateDisplay();
+    }
 });
